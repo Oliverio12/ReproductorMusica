@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Wave;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace Reproductor
@@ -140,10 +141,29 @@ namespace Reproductor
                     {
                         outputDevice.Init(audioFile);
                         outputDevice.Play();
+
+                        progressBar1.Maximum = (int)audioFile.TotalTime.TotalSeconds;
+
+                        // Iniciar un bucle para actualizar el valor del ProgressBar mientras se reproduce la canción
+                        while (outputDevice.PlaybackState == PlaybackState.Playing && audioFile != null)
+                        {
+                            // Verificar si audioFile aún está disponible
+                            if (audioFile.CurrentTime != null)
+                            {
+                                // Actualizar el valor del ProgressBar con el tiempo transcurrido
+                                progressBar1.Value = (int)audioFile.CurrentTime.TotalSeconds;
+                            }
+                            Application.DoEvents(); // Permitir que la aplicación actualice la interfaz de usuario
+                        }
+
+                        // Restablecer el valor del ProgressBar al final de la reproducción
+                        progressBar1.Value = 0;
                     }
                 }
             }
         }
+
+
 
         private void btnDetener_Click(object sender, EventArgs e)
         {
