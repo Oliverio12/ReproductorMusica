@@ -150,14 +150,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Reproductor.exe" size="162744">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Reproductor.exe" size="163256">
       <assemblyIdentity name="Reproductor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OVVeVoBN0IGOiH6fvAieI8cKy4b67DLnRRdJR30efiA=</dsig:DigestValue>
+        <dsig:DigestValue>+UIbAWpSVOmqU24dbZzpReP2EEIPivgZeNSojA83bGw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

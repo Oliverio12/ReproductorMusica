@@ -37,7 +37,7 @@
             this.btnReproducir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDetener = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.txb = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -55,7 +55,6 @@
             this.lblCanciones = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tspCargando = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCanciones)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -78,13 +77,13 @@
             this.btnReproducir,
             this.toolStripSeparator2,
             this.btnDetener,
-            this.toolStripTextBox1,
+            this.txb,
             this.toolStripButton4,
             this.toolStripSeparator3,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1134, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1134, 27);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -125,13 +124,14 @@
             this.btnDetener.Text = "Stop";
             this.btnDetener.Click += new System.EventHandler(this.btnDetener_Click);
             // 
-            // toolStripTextBox1
+            // txb
             // 
-            this.toolStripTextBox1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 27);
+            this.txb.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.txb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txb.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txb.Name = "txb";
+            this.txb.Size = new System.Drawing.Size(200, 27);
+            this.txb.TextChanged += new System.EventHandler(this.txb_TextChanged);
             // 
             // toolStripButton4
             // 
@@ -175,12 +175,12 @@
             this.CRuta});
             this.dtgCanciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgCanciones.GridColor = System.Drawing.Color.LightGray;
-            this.dtgCanciones.Location = new System.Drawing.Point(0, 31);
+            this.dtgCanciones.Location = new System.Drawing.Point(0, 27);
             this.dtgCanciones.Name = "dtgCanciones";
             this.dtgCanciones.ReadOnly = true;
             this.dtgCanciones.RowHeadersWidth = 51;
             this.dtgCanciones.RowTemplate.Height = 24;
-            this.dtgCanciones.Size = new System.Drawing.Size(1134, 495);
+            this.dtgCanciones.Size = new System.Drawing.Size(1134, 499);
             this.dtgCanciones.TabIndex = 3;
             this.dtgCanciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -271,8 +271,7 @@
             this.toolStripStatusLabel1,
             this.lblCanciones,
             this.toolStripSeparator4,
-            this.lblStatus,
-            this.tspCargando});
+            this.lblStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 500);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1134, 26);
@@ -303,12 +302,6 @@
             this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblStatus.Size = new System.Drawing.Size(64, 20);
             this.lblStatus.Text = "00:00";
-            // 
-            // tspCargando
-            // 
-            this.tspCargando.BackColor = System.Drawing.Color.Khaki;
-            this.tspCargando.Name = "tspCargando";
-            this.tspCargando.Size = new System.Drawing.Size(200, 18);
             // 
             // Principal
             // 
@@ -345,7 +338,7 @@
         private System.Windows.Forms.ToolStripButton btnReproducir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnDetener;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripTextBox txb;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -362,7 +355,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         public System.Windows.Forms.ToolStripStatusLabel lblStatus;
-        private System.Windows.Forms.ToolStripProgressBar tspCargando;
     }
 }
 

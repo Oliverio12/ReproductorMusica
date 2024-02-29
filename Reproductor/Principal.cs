@@ -182,8 +182,8 @@ namespace Reproductor
                     {
                         outputDevice.Init(audioFile);
                         outputDevice.Play();
-                        int progreso = (int)((audioFile.Position / (double)audioFile.Length) * 100);
-                        tspCargando.Value = progreso;
+                        
+
                         // Iniciar el temporizador cuando se inicia la reproducción
                         timer.Start();
                     }
@@ -283,7 +283,6 @@ namespace Reproductor
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                         GuardarCanciones();
-
                         lblCanciones.Text = dtgCanciones.Rows.Count.ToString();
                     }
                     catch { }
@@ -291,8 +290,30 @@ namespace Reproductor
             }
 
         }
-
-
-
+        private void FiltrarDatos(string filtro)
+        {
+            if (_CANCIONES != null)
+            {
+                int indiceEspacio = filtro.IndexOf(' ');
+                string filtroTitulo= "";
+               
+                if (indiceEspacio != -1)
+                {
+                    filtroTitulo = filtro.Substring(indiceEspacio + 1);
+                }
+                else
+                {
+                    filtroTitulo = filtro;
+                }
+                string titulo = $"CTitulo LIKE '%{filtroTitulo}%' ";
+                _CANCIONES.DefaultView.RowFilter = titulo;
+                dtgCanciones.DataSource = _CANCIONES.DefaultView.ToTable();
+            }
+        }
+        private void txb_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txb.Text;
+            FiltrarDatos(filtro);
+        }
     }//Final de codigo
 }
