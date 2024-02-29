@@ -53,7 +53,9 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCanciones = new System.Windows.Forms.ToolStripStatusLabel();
-            this.progressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tspCargando = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCanciones)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -82,7 +84,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1144, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1134, 31);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -91,35 +93,35 @@
             this.btnAbrir.Image = ((System.Drawing.Image)(resources.GetObject("btnAbrir.Image")));
             this.btnAbrir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAbrir.Name = "btnAbrir";
-            this.btnAbrir.Size = new System.Drawing.Size(122, 28);
+            this.btnAbrir.Size = new System.Drawing.Size(122, 24);
             this.btnAbrir.Text = "Abrir Carpeta";
             this.btnAbrir.Click += new System.EventHandler(this.btnAbrir_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // btnReproducir
             // 
             this.btnReproducir.Image = ((System.Drawing.Image)(resources.GetObject("btnReproducir.Image")));
             this.btnReproducir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnReproducir.Name = "btnReproducir";
-            this.btnReproducir.Size = new System.Drawing.Size(60, 28);
+            this.btnReproducir.Size = new System.Drawing.Size(60, 24);
             this.btnReproducir.Text = "Play";
             this.btnReproducir.Click += new System.EventHandler(this.btnReproducir_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // btnDetener
             // 
             this.btnDetener.Image = ((System.Drawing.Image)(resources.GetObject("btnDetener.Image")));
             this.btnDetener.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDetener.Name = "btnDetener";
-            this.btnDetener.Size = new System.Drawing.Size(64, 28);
+            this.btnDetener.Size = new System.Drawing.Size(64, 24);
             this.btnDetener.Text = "Stop";
             this.btnDetener.Click += new System.EventHandler(this.btnDetener_Click);
             // 
@@ -129,7 +131,7 @@
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 31);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 27);
             // 
             // toolStripButton4
             // 
@@ -138,20 +140,20 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton4.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton4.Text = "Buscar";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton1
             // 
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(129, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(129, 24);
             this.toolStripButton1.Text = "Editar Cancion";
             this.toolStripButton1.Click += new System.EventHandler(this.btnEditarCancion);
             // 
@@ -178,7 +180,7 @@
             this.dtgCanciones.ReadOnly = true;
             this.dtgCanciones.RowHeadersWidth = 51;
             this.dtgCanciones.RowTemplate.Height = 24;
-            this.dtgCanciones.Size = new System.Drawing.Size(1144, 495);
+            this.dtgCanciones.Size = new System.Drawing.Size(1134, 495);
             this.dtgCanciones.TabIndex = 3;
             this.dtgCanciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -268,10 +270,12 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.lblCanciones,
-            this.progressBar1});
+            this.toolStripSeparator4,
+            this.lblStatus,
+            this.tspCargando});
             this.statusStrip1.Location = new System.Drawing.Point(0, 500);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1144, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1134, 26);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -287,18 +291,31 @@
             this.lblCanciones.Size = new System.Drawing.Size(17, 20);
             this.lblCanciones.Text = "0";
             // 
-            // progressBar1
+            // toolStripSeparator4
             // 
-            this.progressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(200, 18);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 26);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Image = ((System.Drawing.Image)(resources.GetObject("lblStatus.Image")));
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblStatus.Size = new System.Drawing.Size(64, 20);
+            this.lblStatus.Text = "00:00";
+            // 
+            // tspCargando
+            // 
+            this.tspCargando.BackColor = System.Drawing.Color.Khaki;
+            this.tspCargando.Name = "tspCargando";
+            this.tspCargando.Size = new System.Drawing.Size(200, 18);
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(1144, 526);
+            this.ClientSize = new System.Drawing.Size(1134, 526);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dtgCanciones);
             this.Controls.Add(this.toolStrip1);
@@ -343,7 +360,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CRuta;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripProgressBar progressBar1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        public System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.ToolStripProgressBar tspCargando;
     }
 }
 

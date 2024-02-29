@@ -23,6 +23,20 @@ namespace Reproductor
         DataTable _CANCIONES = new DataTable();
         WaveOutEvent outputDevice = new WaveOutEvent();
         string rutaArchivo = "Canciones.dat";
+
+        private Timer timer = new Timer();
+
+        // Declarar una variable para mantener el tiempo transcurrido
+        private TimeSpan tiempoTranscurrido = TimeSpan.Zero;
+
+        // Método para actualizar el label con el tiempo transcurrido
+        private void ActualizarTiempoTranscurrido()
+        {
+            lblStatus.Text = tiempoTranscurrido.ToString(@"mm\:ss");
+        }
+
+
+
         private void IniciarTabla()
         {
             _CANCIONES.TableName = "Canciones";
@@ -45,10 +59,14 @@ namespace Reproductor
         {
             InitializeComponent();
             IniciarTabla();
-
             LeerCanciones();
+
+            timer.Interval = 1000; // 1 segundo
+            timer.Tick += Timer_Tick;
+            outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped;
         }
 
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -125,6 +143,21 @@ namespace Reproductor
         }
 
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Incrementar el tiempo transcurrido cada segundo
+            tiempoTranscurrido = tiempoTranscurrido.Add(TimeSpan.FromSeconds(1));
+            ActualizarTiempoTranscurrido();
+        }
+
+        private void OutputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            // Reiniciar el tiempo transcurrido cuando la reproducción se detiene
+            tiempoTranscurrido = TimeSpan.Zero;
+            ActualizarTiempoTranscurrido();
+            // Detener el temporizador
+            timer.Stop();
+        }
 
         private void btnReproducir_Click(object sender, EventArgs e)
         {
@@ -136,28 +169,23 @@ namespace Reproductor
                 if (File.Exists(rutaCancion))
                 {
                     if (outputDevice.PlaybackState == PlaybackState.Playing)
+                    {
                         outputDevice.Stop();
+                        // Reiniciar el tiempo transcurrido
+                        tiempoTranscurrido = TimeSpan.Zero;
+                        ActualizarTiempoTranscurrido();
+                        // Detener el temporizador
+                        timer.Stop();
+                    }
+
                     using (var audioFile = new AudioFileReader(rutaCancion))
                     {
                         outputDevice.Init(audioFile);
                         outputDevice.Play();
-
-                        progressBar1.Maximum = (int)audioFile.TotalTime.TotalSeconds;
-
-                        // Iniciar un bucle para actualizar el valor del ProgressBar mientras se reproduce la canción
-                        while (outputDevice.PlaybackState == PlaybackState.Playing && audioFile != null)
-                        {
-                            // Verificar si audioFile aún está disponible
-                            if (audioFile.CurrentTime != null)
-                            {
-                                // Actualizar el valor del ProgressBar con el tiempo transcurrido
-                                progressBar1.Value = (int)audioFile.CurrentTime.TotalSeconds;
-                            }
-                            Application.DoEvents(); // Permitir que la aplicación actualice la interfaz de usuario
-                        }
-
-                        // Restablecer el valor del ProgressBar al final de la reproducción
-                        progressBar1.Value = 0;
+                        int progreso = (int)((audioFile.Position / (double)audioFile.Length) * 100);
+                        tspCargando.Value = progreso;
+                        // Iniciar el temporizador cuando se inicia la reproducción
+                        timer.Start();
                     }
                 }
             }
