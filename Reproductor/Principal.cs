@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.Wave;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using NAudio.Utils;
 
 
 namespace Reproductor
@@ -60,7 +61,6 @@ namespace Reproductor
             InitializeComponent();
             IniciarTabla();
             LeerCanciones();
-
             timer.Interval = 1000; // 1 segundo
             timer.Tick += Timer_Tick;
             outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped;
@@ -87,7 +87,14 @@ namespace Reproductor
         }
 
 
-
+        private void Principal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (outputDevice != null && outputDevice.PlaybackState == PlaybackState.Playing)
+            {
+                outputDevice.Stop();
+                outputDevice.Dispose();
+            }
+        }
         private void btnAbrir_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog f = new FolderBrowserDialog();
@@ -159,6 +166,21 @@ namespace Reproductor
             timer.Stop();
         }
 
+        // Declara una variable para mantener el estado de reproducción actual
+        private PlaybackState estadoReproduccionActual = PlaybackState.Stopped;
+        private TimeSpan tiempoPausado;
+
+        private void btnPausa_Click(object sender, EventArgs e)
+        {
+            if (outputDevice.PlaybackState == PlaybackState.Playing)
+            {
+                outputDevice.Pause();
+                tiempoPausado = outputDevice.GetPositionTimeSpan();
+                estadoReproduccionActual = PlaybackState.Paused;
+                timer.Stop();
+            }
+        }
+
         private void btnReproducir_Click(object sender, EventArgs e)
         {
             DataGridViewCell clickedCell = dtgCanciones.CurrentCell;
@@ -168,28 +190,34 @@ namespace Reproductor
                 string rutaCancion = clickedRow.Cells["CRuta"].Value.ToString();
                 if (File.Exists(rutaCancion))
                 {
-                    if (outputDevice.PlaybackState == PlaybackState.Playing)
+                    if (estadoReproduccionActual == PlaybackState.Paused)
                     {
-                        outputDevice.Stop();
-                        // Reiniciar el tiempo transcurrido
-                        tiempoTranscurrido = TimeSpan.Zero;
-                        ActualizarTiempoTranscurrido();
-                        // Detener el temporizador
-                        timer.Stop();
-                    }
-
-                    using (var audioFile = new AudioFileReader(rutaCancion))
-                    {
-                        outputDevice.Init(audioFile);
                         outputDevice.Play();
-                        
-
-                        // Iniciar el temporizador cuando se inicia la reproducción
+                        estadoReproduccionActual = PlaybackState.Playing;
                         timer.Start();
+                    }
+                    else
+                    {
+                        if (outputDevice.PlaybackState == PlaybackState.Playing)
+                        {
+                            outputDevice.Stop();
+                            outputDevice.Dispose();
+                        }
+
+                        using (var audioFile = new AudioFileReader(rutaCancion))
+                        {
+                            outputDevice = new WaveOutEvent();
+                            outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped;
+                            outputDevice.Init(audioFile);
+                            outputDevice.Play();
+                            estadoReproduccionActual = PlaybackState.Playing;
+                            timer.Start();
+                        }
                     }
                 }
             }
         }
+
 
 
 
@@ -315,5 +343,7 @@ namespace Reproductor
             string filtro = txb.Text;
             FiltrarDatos(filtro);
         }
+
+       
     }//Final de codigo
 }

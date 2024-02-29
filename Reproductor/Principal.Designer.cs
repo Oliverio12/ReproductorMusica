@@ -41,6 +41,8 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnPausa = new System.Windows.Forms.ToolStripButton();
             this.dtgCanciones = new System.Windows.Forms.DataGridView();
             this.CTitulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CArchivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,6 +82,8 @@
             this.txb,
             this.toolStripButton4,
             this.toolStripSeparator3,
+            this.btnPausa,
+            this.toolStripSeparator5,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -156,6 +160,20 @@
             this.toolStripButton1.Size = new System.Drawing.Size(129, 24);
             this.toolStripButton1.Text = "Editar Cancion";
             this.toolStripButton1.Click += new System.EventHandler(this.btnEditarCancion);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
+            // 
+            // btnPausa
+            // 
+            this.btnPausa.Image = ((System.Drawing.Image)(resources.GetObject("btnPausa.Image")));
+            this.btnPausa.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPausa.Name = "btnPausa";
+            this.btnPausa.Size = new System.Drawing.Size(70, 24);
+            this.btnPausa.Text = "Pausa";
+            this.btnPausa.Click += new System.EventHandler(this.btnPausa_Click);
             // 
             // dtgCanciones
             // 
@@ -355,6 +373,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         public System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton btnPausa;
     }
 }
 
