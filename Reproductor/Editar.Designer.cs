@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editar));
             this.button1 = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.iconos = new System.Windows.Forms.ImageList(this.components);
             this.button2 = new System.Windows.Forms.Button();
             this.lblTituloC = new System.Windows.Forms.Label();
             this.txbTitulo = new System.Windows.Forms.TextBox();
@@ -39,6 +39,7 @@
             this.txbArtis = new System.Windows.Forms.TextBox();
             this.lblGenero = new System.Windows.Forms.Label();
             this.txbGenero = new System.Windows.Forms.TextBox();
+            this.iconos2 = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // button1
@@ -46,8 +47,8 @@
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.ImageKey = "Cancelar.png";
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(269, 372);
+            this.button1.ImageList = this.iconos;
+            this.button1.Location = new System.Drawing.Point(271, 363);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 58);
             this.button1.TabIndex = 0;
@@ -55,20 +56,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnSalir);
             // 
-            // imageList1
+            // iconos
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Guardar.png");
-            this.imageList1.Images.SetKeyName(1, "Cancelar.png");
+            this.iconos.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconos.ImageStream")));
+            this.iconos.TransparentColor = System.Drawing.Color.Transparent;
+            this.iconos.Images.SetKeyName(0, "Guardar.png");
+            this.iconos.Images.SetKeyName(1, "Cancelar.png");
             // 
             // button2
             // 
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Fuchsia;
             this.button2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.ImageKey = "Guardar.png";
-            this.button2.ImageList = this.imageList1;
-            this.button2.Location = new System.Drawing.Point(109, 372);
+            this.button2.ImageList = this.iconos;
+            this.button2.Location = new System.Drawing.Point(111, 363);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 58);
             this.button2.TabIndex = 1;
@@ -116,7 +118,7 @@
             // 
             this.lblGenero.AutoSize = true;
             this.lblGenero.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenero.Location = new System.Drawing.Point(106, 252);
+            this.lblGenero.Location = new System.Drawing.Point(106, 235);
             this.lblGenero.Name = "lblGenero";
             this.lblGenero.Size = new System.Drawing.Size(90, 28);
             this.lblGenero.TabIndex = 6;
@@ -125,17 +127,23 @@
             // txbGenero
             // 
             this.txbGenero.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbGenero.Location = new System.Drawing.Point(109, 283);
+            this.txbGenero.Location = new System.Drawing.Point(109, 266);
             this.txbGenero.Name = "txbGenero";
             this.txbGenero.Size = new System.Drawing.Size(300, 34);
             this.txbGenero.TabIndex = 7;
+            // 
+            // iconos2
+            // 
+            this.iconos2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconos2.ImageStream")));
+            this.iconos2.TransparentColor = System.Drawing.Color.Transparent;
+            this.iconos2.Images.SetKeyName(0, "multimedia.png");
             // 
             // Editar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.ClientSize = new System.Drawing.Size(497, 479);
+            this.ClientSize = new System.Drawing.Size(504, 493);
             this.ControlBox = false;
             this.Controls.Add(this.txbGenero);
             this.Controls.Add(this.lblGenero);
@@ -145,6 +153,7 @@
             this.Controls.Add(this.lblTituloC);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Editar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar";
@@ -157,7 +166,7 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList iconos;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblTituloC;
         public System.Windows.Forms.TextBox txbTitulo;
@@ -165,5 +174,6 @@
         public System.Windows.Forms.TextBox txbArtis;
         private System.Windows.Forms.Label lblGenero;
         public System.Windows.Forms.TextBox txbGenero;
+        private System.Windows.Forms.ImageList iconos2;
     }
 }

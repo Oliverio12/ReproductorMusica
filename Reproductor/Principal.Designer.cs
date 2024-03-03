@@ -40,10 +40,15 @@
             this.txb = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnPausa = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.dtgCanciones = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCanciones = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.CTitulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CArchivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CArtista = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,11 +57,6 @@
             this.CGenero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CVelocidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblCanciones = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCanciones)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -87,7 +87,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1134, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1280, 27);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -152,20 +152,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(129, 24);
-            this.toolStripButton1.Text = "Editar Cancion";
-            this.toolStripButton1.Click += new System.EventHandler(this.btnEditarCancion);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
-            // 
             // btnPausa
             // 
             this.btnPausa.Image = ((System.Drawing.Image)(resources.GetObject("btnPausa.Image")));
@@ -174,6 +160,20 @@
             this.btnPausa.Size = new System.Drawing.Size(70, 24);
             this.btnPausa.Text = "Pausa";
             this.btnPausa.Click += new System.EventHandler(this.btnPausa_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(129, 24);
+            this.toolStripButton1.Text = "Editar Cancion";
+            this.toolStripButton1.Click += new System.EventHandler(this.btnEditarCancion);
             // 
             // dtgCanciones
             // 
@@ -198,9 +198,48 @@
             this.dtgCanciones.ReadOnly = true;
             this.dtgCanciones.RowHeadersWidth = 51;
             this.dtgCanciones.RowTemplate.Height = 24;
-            this.dtgCanciones.Size = new System.Drawing.Size(1134, 499);
+            this.dtgCanciones.Size = new System.Drawing.Size(1280, 499);
             this.dtgCanciones.TabIndex = 3;
             this.dtgCanciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lblCanciones,
+            this.toolStripSeparator4,
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 500);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1280, 26);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(76, 20);
+            this.toolStripStatusLabel1.Text = "Canciones";
+            // 
+            // lblCanciones
+            // 
+            this.lblCanciones.Name = "lblCanciones";
+            this.lblCanciones.Size = new System.Drawing.Size(17, 20);
+            this.lblCanciones.Text = "0";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 26);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Image = ((System.Drawing.Image)(resources.GetObject("lblStatus.Image")));
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblStatus.Size = new System.Drawing.Size(64, 20);
+            this.lblStatus.Text = "00:00";
             // 
             // CTitulo
             // 
@@ -277,56 +316,17 @@
             this.CRuta.DataPropertyName = "CRuta";
             this.CRuta.FillWeight = 25.66844F;
             this.CRuta.HeaderText = "Ruta";
-            this.CRuta.MinimumWidth = 100;
+            this.CRuta.MinimumWidth = 350;
             this.CRuta.Name = "CRuta";
             this.CRuta.ReadOnly = true;
-            this.CRuta.Width = 125;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.lblCanciones,
-            this.toolStripSeparator4,
-            this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 500);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1134, 26);
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(76, 20);
-            this.toolStripStatusLabel1.Text = "Canciones";
-            // 
-            // lblCanciones
-            // 
-            this.lblCanciones.Name = "lblCanciones";
-            this.lblCanciones.Size = new System.Drawing.Size(17, 20);
-            this.lblCanciones.Text = "0";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 26);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Image = ((System.Drawing.Image)(resources.GetObject("lblStatus.Image")));
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblStatus.Size = new System.Drawing.Size(64, 20);
-            this.lblStatus.Text = "00:00";
+            this.CRuta.Width = 350;
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(1134, 526);
+            this.ClientSize = new System.Drawing.Size(1280, 526);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dtgCanciones);
             this.Controls.Add(this.toolStrip1);
@@ -350,7 +350,6 @@
         #endregion
         private System.Windows.Forms.ImageList Iconos;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.DataGridView dtgCanciones;
         private System.Windows.Forms.ToolStripButton btnAbrir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnReproducir;
@@ -361,6 +360,12 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblCanciones;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        public System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton btnPausa;
         private System.Windows.Forms.DataGridViewTextBoxColumn CTitulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CArchivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CArtista;
@@ -369,12 +374,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CGenero;
         private System.Windows.Forms.DataGridViewTextBoxColumn CVelocidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn CRuta;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        public System.Windows.Forms.ToolStripStatusLabel lblStatus;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton btnPausa;
+        public System.Windows.Forms.DataGridView dtgCanciones;
     }
 }
 

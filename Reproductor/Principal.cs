@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
@@ -14,6 +13,7 @@ using System.Windows.Forms;
 using NAudio.Wave;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using NAudio.Utils;
+using System.Security.Cryptography;
 
 
 namespace Reproductor
@@ -22,10 +22,10 @@ namespace Reproductor
     {
 
         DataTable _CANCIONES = new DataTable();
-        WaveOutEvent outputDevice = new WaveOutEvent();
+        WaveOutEvent salidaDeAudio = new WaveOutEvent();
         string rutaArchivo = "Canciones.dat";
 
-        private Timer timer = new Timer();
+        private Timer tiempo = new Timer();
 
         // Declarar una variable para mantener el tiempo transcurrido
         private TimeSpan tiempoTranscurrido = TimeSpan.Zero;
@@ -61,9 +61,9 @@ namespace Reproductor
             InitializeComponent();
             IniciarTabla();
             LeerCanciones();
-            timer.Interval = 1000; // 1 segundo
-            timer.Tick += Timer_Tick;
-            outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped;
+            tiempo.Interval = 1000; // 1 segundo
+            tiempo.Tick += Temporizador_Tick;
+            salidaDeAudio.PlaybackStopped += ReproduccionDispositivo_SalidaDetenida;
         }
 
         
@@ -73,28 +73,14 @@ namespace Reproductor
 
         }
 
-
-
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
 
-        private void Principal_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (outputDevice != null && outputDevice.PlaybackState == PlaybackState.Playing)
-            {
-                outputDevice.Stop();
-                outputDevice.Dispose();
-            }
-        }
+
         private void btnAbrir_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog f = new FolderBrowserDialog();
@@ -102,7 +88,6 @@ namespace Reproductor
             f.ShowDialog();
             if (f.SelectedPath.Length > 0)
             {
-                FileInfo finleInfo = new FileInfo(f.SelectedPath);
                 System.IO.DirectoryInfo Carpeta = new DirectoryInfo(f.SelectedPath);
                 foreach (FileInfo Archivo in Carpeta.GetFiles())
                 {
@@ -126,13 +111,17 @@ namespace Reproductor
                             TagLib.File Cancion = TagLib.File.Create(Archivo.FullName);
                             TimeSpan duracion = Cancion.Properties.Duration;
 
+
                             DataRow NuevaFila = _CANCIONES.NewRow();
                             NuevaFila["CTitulo"] = Cancion.Tag.Title;
                             NuevaFila["CRuta"] = Archivo.FullName;
                             NuevaFila["CArchivo"] = Archivo.Name;
                             NuevaFila["CDuracion"] = duracion.ToString(@"mm\:ss");
                             NuevaFila["CTamano"] = (Archivo.Length / 1024).ToString("N2");
-                            NuevaFila["CVelocidad"] = Archivo.Name;
+
+                            string velocidad = Cancion.Properties.AudioSampleRate.ToString();
+                            NuevaFila["CVelocidad"] = velocidad;
+
                             try
                             {
                                 NuevaFila["CArtista"] = Cancion.Tag.AlbumArtists[0].ToString();
@@ -150,20 +139,20 @@ namespace Reproductor
         }
 
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Temporizador_Tick(object sender, EventArgs e)
         {
             // Incrementar el tiempo transcurrido cada segundo
             tiempoTranscurrido = tiempoTranscurrido.Add(TimeSpan.FromSeconds(1));
             ActualizarTiempoTranscurrido();
         }
 
-        private void OutputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
+        private void ReproduccionDispositivo_SalidaDetenida(object sender, StoppedEventArgs e)
         {
             // Reiniciar el tiempo transcurrido cuando la reproducción se detiene
             tiempoTranscurrido = TimeSpan.Zero;
             ActualizarTiempoTranscurrido();
             // Detener el temporizador
-            timer.Stop();
+            tiempo.Start();
         }
 
         // Declara una variable para mantener el estado de reproducción actual
@@ -172,12 +161,12 @@ namespace Reproductor
 
         private void btnPausa_Click(object sender, EventArgs e)
         {
-            if (outputDevice.PlaybackState == PlaybackState.Playing)
+            if (salidaDeAudio.PlaybackState == PlaybackState.Playing)
             {
-                outputDevice.Pause();
-                tiempoPausado = outputDevice.GetPositionTimeSpan();
+                salidaDeAudio.Pause();
+                tiempoPausado = salidaDeAudio.GetPositionTimeSpan();
                 estadoReproduccionActual = PlaybackState.Paused;
-                timer.Stop();
+                tiempo.Stop();
             }
         }
 
@@ -192,26 +181,29 @@ namespace Reproductor
                 {
                     if (estadoReproduccionActual == PlaybackState.Paused)
                     {
-                        outputDevice.Play();
+
+                        tiempoPausado = salidaDeAudio.GetPositionTimeSpan();
+                        salidaDeAudio.Play();
                         estadoReproduccionActual = PlaybackState.Playing;
-                        timer.Start();
+                        tiempo.Start();
                     }
                     else
                     {
-                        if (outputDevice.PlaybackState == PlaybackState.Playing)
+                        if (salidaDeAudio.PlaybackState == PlaybackState.Playing)
                         {
-                            outputDevice.Stop();
-                            outputDevice.Dispose();
+                            salidaDeAudio.Stop();
+                            salidaDeAudio.Dispose();
+                        
                         }
 
                         using (var audioFile = new AudioFileReader(rutaCancion))
                         {
-                            outputDevice = new WaveOutEvent();
-                            outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped;
-                            outputDevice.Init(audioFile);
-                            outputDevice.Play();
+                            salidaDeAudio = new WaveOutEvent();
+                            salidaDeAudio.PlaybackStopped += ReproduccionDispositivo_SalidaDetenida;
+                            salidaDeAudio.Init(audioFile);
+                            salidaDeAudio.Play();
                             estadoReproduccionActual = PlaybackState.Playing;
-                            timer.Start();
+                            tiempo.Start();
                         }
                     }
                 }
@@ -221,9 +213,10 @@ namespace Reproductor
 
 
 
+
         private void btnDetener_Click(object sender, EventArgs e)
         {
-            outputDevice.Stop();
+            salidaDeAudio.Stop();
         }
 
 
@@ -295,6 +288,7 @@ namespace Reproductor
                     .Cells["CGenero"]   //Especificamos la celda con un array con nombres
                     .Value //Validamos
                     .ToString(); //Convertimos a string
+                
 
 
                 EdC.ShowDialog();//Sacamos la nueva ventana
@@ -305,7 +299,6 @@ namespace Reproductor
                         dtgCanciones.CurrentRow.Cells["CTitulo"].Value = EdC.txbTitulo.Text;
                         dtgCanciones.CurrentRow.Cells["CArtista"].Value = EdC.txbArtis.Text;
                         dtgCanciones.CurrentRow.Cells["CGenero"].Value = EdC.txbGenero.Text;
-
                         MessageBox.Show("Registro Editado",
                         "Confirmacion",
                         MessageBoxButtons.OK,
@@ -315,8 +308,8 @@ namespace Reproductor
                     }
                     catch { }
                 }
-            }
 
+            }
         }
         private void FiltrarDatos(string filtro)
         {
