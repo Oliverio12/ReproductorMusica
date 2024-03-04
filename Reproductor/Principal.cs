@@ -152,7 +152,20 @@ namespace Reproductor
             tiempoTranscurrido = TimeSpan.Zero;
             ActualizarTiempoTranscurrido();
             // Detener el temporizador
-            tiempo.Start();
+
+            if (sender == btnDetener)
+            {
+                tiempo.Stop();
+            }
+
+            if (sender == btnReproducir) {
+                tiempo.Start();
+            }
+            
+            if (sender == btnPausa)
+            {
+                tiempo.Start();
+            }
         }
 
         // Declara una variable para mantener el estado de reproducción actual
@@ -172,16 +185,13 @@ namespace Reproductor
 
         private void btnReproducir_Click(object sender, EventArgs e)
         {
-            DataGridViewCell clickedCell = dtgCanciones.CurrentCell;
-            if (clickedCell != null && clickedCell.RowIndex != -1)
+            if (dtgCanciones.CurrentRow != null && dtgCanciones.CurrentRow.Cells["CRuta"].Value != null)
             {
-                DataGridViewRow clickedRow = dtgCanciones.Rows[clickedCell.RowIndex];
-                string rutaCancion = clickedRow.Cells["CRuta"].Value.ToString();
+                string rutaCancion = dtgCanciones.CurrentRow.Cells["CRuta"].Value.ToString();
                 if (File.Exists(rutaCancion))
                 {
                     if (estadoReproduccionActual == PlaybackState.Paused)
                     {
-
                         tiempoPausado = salidaDeAudio.GetPositionTimeSpan();
                         salidaDeAudio.Play();
                         estadoReproduccionActual = PlaybackState.Playing;
@@ -193,7 +203,6 @@ namespace Reproductor
                         {
                             salidaDeAudio.Stop();
                             salidaDeAudio.Dispose();
-                        
                         }
 
                         using (var audioFile = new AudioFileReader(rutaCancion))
@@ -214,9 +223,11 @@ namespace Reproductor
 
 
 
+
         private void btnDetener_Click(object sender, EventArgs e)
         {
             salidaDeAudio.Stop();
+            tiempo.Stop();
         }
 
 

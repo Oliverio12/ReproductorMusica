@@ -44,11 +44,6 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.dtgCanciones = new System.Windows.Forms.DataGridView();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblCanciones = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.CTitulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CArchivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CArtista = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +52,11 @@
             this.CGenero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CVelocidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CRuta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCanciones = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCanciones)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -179,7 +179,7 @@
             // 
             this.dtgCanciones.AllowUserToAddRows = false;
             this.dtgCanciones.AllowUserToDeleteRows = false;
-            this.dtgCanciones.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dtgCanciones.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.dtgCanciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dtgCanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCanciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -201,45 +201,6 @@
             this.dtgCanciones.Size = new System.Drawing.Size(1280, 499);
             this.dtgCanciones.TabIndex = 3;
             this.dtgCanciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.lblCanciones,
-            this.toolStripSeparator4,
-            this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 500);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1280, 26);
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(76, 20);
-            this.toolStripStatusLabel1.Text = "Canciones";
-            // 
-            // lblCanciones
-            // 
-            this.lblCanciones.Name = "lblCanciones";
-            this.lblCanciones.Size = new System.Drawing.Size(17, 20);
-            this.lblCanciones.Text = "0";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 26);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Image = ((System.Drawing.Image)(resources.GetObject("lblStatus.Image")));
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblStatus.Size = new System.Drawing.Size(64, 20);
-            this.lblStatus.Text = "00:00";
             // 
             // CTitulo
             // 
@@ -320,6 +281,45 @@
             this.CRuta.Name = "CRuta";
             this.CRuta.ReadOnly = true;
             this.CRuta.Width = 350;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lblCanciones,
+            this.toolStripSeparator4,
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 500);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1280, 26);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(76, 20);
+            this.toolStripStatusLabel1.Text = "Canciones";
+            // 
+            // lblCanciones
+            // 
+            this.lblCanciones.Name = "lblCanciones";
+            this.lblCanciones.Size = new System.Drawing.Size(17, 20);
+            this.lblCanciones.Text = "0";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 26);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Image = ((System.Drawing.Image)(resources.GetObject("lblStatus.Image")));
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblStatus.Size = new System.Drawing.Size(64, 20);
+            this.lblStatus.Text = "00:00";
             // 
             // Principal
             // 
